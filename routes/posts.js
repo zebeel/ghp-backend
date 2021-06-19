@@ -90,6 +90,7 @@ router.post('/load-comments', async function(req, res) {
       if (err) throw err;
       const comments = [];
       for (const doc of result) {
+        if (!doc.approved) continue;
         if (!comments[doc.post_id]) comments[doc.post_id] = [];
         comments[doc.post_id].push(doc);
       }
